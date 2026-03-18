@@ -8,10 +8,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Environment variable se connection string le raha hai
 const config = {
-    connectionString: process.env.DB_CONFIG,
-    options: {
-        encrypt: true
-    }
+    server: process.env.DB_SERVER,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    options: { encrypt: true }
 };
 
 // Home page
