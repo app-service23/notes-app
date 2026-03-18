@@ -13,7 +13,10 @@ const config = {
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     options: { encrypt: true }
+    pool: { max: 10, min: 0, idleTimeoutMillis: 30000 }
 };
+
+await sql.connect(config);
 
 // Home page
 app.get('/', async (req, res) => {
