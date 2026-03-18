@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const sql = require('mssql');
 const bodyParser = require('body-parser');
@@ -5,11 +6,9 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Environment variable se connection string le raha hai
 const config = {
-    user: 'adminuser@notes-server-123',
-    password: 'Allu@1234567',
-    server: 'notes-server-123.database.windows.net',
-    database: 'notesdb',
+    connectionString: process.env.DB_CONFIG,
     options: {
         encrypt: true
     }
@@ -26,13 +25,13 @@ app.get('/', async (req, res) => {
         res.send(`
             <h2>Notes App</h2>
             <form method="POST" action="/add">
-                <input name="note" placeholder="Enter note"/>
+                <input name="note" placeholder="Enter note" required/>
                 <button>Add</button>
             </form>
             <ul>${notes}</ul>
         `);
     } catch (err) {
-        res.send("Error: " + err);
+        res.send("Error: " + err.message);
     }
 });
 
@@ -43,9 +42,9 @@ app.post('/add', async (req, res) => {
         await sql.query`INSERT INTO Notes (content) VALUES (${req.body.note})`;
         res.redirect('/');
     } catch (err) {
-        res.send("Error: " + err);
+        res.send("Error: " + err.message);
     }
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Server running"));
+app.listen(PORT, () => console.log("Server running on port", PORT));
