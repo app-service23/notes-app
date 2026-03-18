@@ -12,7 +12,7 @@ const config = {
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    options: { encrypt: true }
+    options: { encrypt: true },
     pool: { max: 10, min: 0, idleTimeoutMillis: 30000 }
 };
 
