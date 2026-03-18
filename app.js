@@ -6,8 +6,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const config = {
-    user: 'adminuser',
-    password: 'YOUR_PASSWORD',
+    user: 'adminuser@notes-server-123',
+    password: 'Allu@1234567',
     server: 'notes-server-123.database.windows.net',
     database: 'notesdb',
     options: {

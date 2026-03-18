@@ -9,6 +9,8 @@
     "node": "18.x"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "body-parser": "^2.2.2",
+    "express": "^4.22.1",
+    "mssql": "^12.2.1"
   }
 }
